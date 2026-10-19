@@ -1,0 +1,62 @@
+{
+    "programming": [
+        "python",
+        "java",
+        "c",
+        "c++",
+        "javascript",
+        "typescript"
+    ],
+    "data": [
+        "sql",
+        "pandas",
+        "numpy",
+        "excel",
+        "postgresql",
+        "mysql"
+    ],
+    "machine_learning": [
+        "machine learning",
+        "deep learning",
+        "scikit-learn",
+        "tensorflow",
+        "keras",
+        "pytorch",
+        "xgboost",
+        "lightgbm"
+    ],
+    "nlp": [
+        "nlp",
+        "natural language processing",
+        "transformers",
+        "bert",
+        "text classification",
+        "sentiment analysis"
+    ],
+    "genai": [
+        "generative ai",
+        "genai",
+        "llm",
+        "large language model",
+        "rag",
+        "retrieval augmented generation",
+        "langchain",
+        "embeddings",
+        "vector database"
+    ],
+    "cloud": [
+        "aws",
+        "azure",
+        "gcp",
+        "cloudflare",
+        "docker",
+        "kubernetes"
+    ],
+    "tools": [
+        "git",
+        "github",
+        "linux",
+        "fastapi",
+        "streamlit"
+    ]
+}
