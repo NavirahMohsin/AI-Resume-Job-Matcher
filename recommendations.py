@@ -2,15 +2,21 @@ import json
 import os
 import re
 
-from dotenv import load_dotenv
+import streamlit as st
 from groq import Groq
 
-load_dotenv()
 
 DEFAULT_MODEL = os.getenv(
     "GROQ_MODEL",
     "openai/gpt-oss-120b",
 )
+
+
+def _get_groq_api_key():
+    try:
+        return st.secrets.get("GROQ_API_KEY")
+    except Exception:
+        return os.getenv("GROQ_API_KEY")
 
 
 def _extract_json(content):
@@ -42,16 +48,15 @@ def generate_recommendations(missing_skills, job_description):
     if not missing_skills:
         return {"items": [], "error": None}
 
-    api_key = os.getenv("GROQ_API_KEY")
+    api_key = _get_groq_api_key()
 
     if not api_key:
         return {
             "items": [],
-            "error": (
-                "GROQ_API_KEY was not found. Check that your .env file is in "
-                "the same folder as app.py."
-            ),
+            "error": "GROQ_API_KEY is not configured in Streamlit Secrets.",
         }
+
+    client = Groq(api_key=api_key)
 
     prompt = f"""
 Analyze this job description and provide practical recommendations for the
@@ -80,8 +85,6 @@ Do not claim the candidate already possesses missing skills.
 """
 
     try:
-        client = Groq(api_key=api_key)
-
         response = client.chat.completions.create(
             model=DEFAULT_MODEL,
             messages=[
